@@ -141,7 +141,10 @@ To prevent XSS-based session hijacking:
 --------------------------------------------
 ```
 #📌 CREDITS
+
 💻 Developed by: Md Tanvir Rana(AG2409), Margarita Nyman(AG2668)
+
 📅 Date: (2025-03-16)
+
 🛡️ For educational and ethical hacking purposes only.
 
