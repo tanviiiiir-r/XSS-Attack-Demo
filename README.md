@@ -136,9 +136,13 @@ app.listen(4000, '0.0.0.0', () => {
 To prevent XSS-based session hijacking:
 
 1️⃣ Use HttpOnly cookies so JavaScript cannot access them.
+
 2️⃣ Enable Secure and SameSite flags to limit exposure.
+
 3️⃣ Sanitize all user input to block XSS injection.
+
 4️⃣ Implement Content Security Policy (CSP) to block unauthorized scripts.
+
 5️⃣ Use Multi-Factor Authentication (MFA) to protect accounts.
 
 --------------------------------------------
